@@ -31,7 +31,7 @@ var config1 = {
     
     var config = {
         method: 'get',  
-        url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=15.59040388313972,32.54970895180953&language=ar&radius=1500&type=store,cafe&keyword=cruise&key=AIzaSyCfM-A7MhbvNM3h99uqRl_E-jouII9SJGA',
+        url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=15.59040388313972,32.54970895180953&language=ar&radius=1500&key=AIzaSyCfM-A7MhbvNM3h99uqRl_E-jouII9SJGA',
         headers: { }
       };
     
