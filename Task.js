@@ -1,33 +1,55 @@
+const express = require ('express');
+
+const app = express();
 var axios = require('axios');
+
+app.get('/', (req, res) => {
+
+// get city name by lat and long in arabic language
+
 var config1 = {
-    method: 'get',  
-    url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=15.5798703%2C32.5681916&radius=10&type=restaurant&keyword=cruise&key=AIzaSyCfM-A7MhbvNM3h99uqRl_E-jouII9SJGA',
+    method: 'get',
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=15.59040388313972,32.54970895180953&language=ar&key=AIzaSyCfM-A7MhbvNM3h99uqRl_E-jouII9SJGA',
     headers: { }
   };
 
-var config =  {
-  method: 'get',
-  url: 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Dora Bahri lounge, Khartoum&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&key=AIzaSyCfM-A7MhbvNM3h99uqRl_E-jouII9SJGA',
-  headers: { }
-};
-//.candidates[0].formatted_address.split(",")[1]
-axios(config)
+  axios(config1)
 
-.then(async function  (response) {
-    const task = await JSON.stringify(response.data.candidates[0].formatted_address.split(",")[0]);
+  .then( async function (response) {
+      const task2 = await JSON.stringify(response.data.results[0].address_components[1].short_name);
+      console.log(task2);
+      res.send(`City Name From Lat And Long ${task2}`);
+    })
+    .catch(function (error) {
+      console.log(error);
+    }); 
+  })
+
+  app.get('/task', (req, res) => {
+
+    // get city name by lat and long in arabic language
     
-  console.log(task);
-})
-.catch(function (error) {
-  console.log(error);
-});
-
-axios(config1)
-
+    var config = {
+        method: 'get',  
+        url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=15.59040388313972,32.54970895180953&language=ar&radius=1500&type=store,cafe&keyword=cruise&key=AIzaSyCfM-A7MhbvNM3h99uqRl_E-jouII9SJGA',
+        headers: { }
+      };
+    
+      axios(config)
+    
+   
 .then( async function (response) {
-    const task2 = await JSON.stringify(response.data.results[0].name);
-    console.log(task2);
+    const task3 = await JSON.stringify(response.data.results[0].name);
+    console.log(task3);
+    res.send(`the nearby place of the same lat and long in get city name ${task3}`);
   })
   .catch(function (error) {
     console.log(error);
   });
+        }); 
+      
+
+
+app.listen((process.env.PORT|| 5000), ()=>{
+    console.log('Backend server running on port 5000')
+});
