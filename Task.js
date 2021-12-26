@@ -7,7 +7,7 @@ var config1 = {
 
 var config =  {
   method: 'get',
-  url: 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Khartoum International Airport&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&key=AIzaSyCfM-A7MhbvNM3h99uqRl_E-jouII9SJGA',
+  url: 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Dora Bahri lounge, Khartoum&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&key=AIzaSyCfM-A7MhbvNM3h99uqRl_E-jouII9SJGA',
   headers: { }
 };
 //.candidates[0].formatted_address.split(",")[1]
