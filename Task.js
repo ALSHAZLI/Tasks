@@ -40,7 +40,7 @@ var configCity = {
   
   apiCall(configCity)
     .then( async function (response) {
-        // get city name by lat and long in arabic language 15.612887526239208, 32.53202878716481
+        // get city name by lat and long in arabic language 
         const task2 = await JSON.stringify(response.results[0].address_components[1].short_name);
         dataCity = task2;
         console.log(task2);
