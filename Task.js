@@ -24,12 +24,12 @@ function apiCall (reqOps) {
 
 var configCity = {
     method: 'get',
-    url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=15.59040388313972,32.54970895180953&language=ar&key=AIzaSyB09k6jqR4ncnhxQ_5DMl1JorQCPoi6IMw',
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=15.689549289692504,32.50204974742722&language=ar&key=AIzaSyB09k6jqR4ncnhxQ_5DMl1JorQCPoi6IMw',
     headers: { }
   };
   var configNear = {
     method: 'get',  
-    url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=15.69040388313972,32.64970895180953&language=ar&radius=50&key=AIzaSyB09k6jqR4ncnhxQ_5DMl1JorQCPoi6IMw',
+    url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=15.689549289692504,32.50204974742722&language=ar&radius=500&key=AIzaSyB09k6jqR4ncnhxQ_5DMl1JorQCPoi6IMw',
     headers: { }
   };
 
@@ -39,32 +39,37 @@ var configCity = {
     let dataCity, dataNear;
   
   apiCall(configCity)
-
-//   apiCall(config1)
-
-  .then( async function (response) {
-      // get city name by lat and long in arabic language
-      const task2 = await JSON.stringify(response.results[0].address_components[1].short_name);
-      dataCity = task2;
-      console.log(task2);
-      return apiCall(configNear);
+    .then( async function (response) {
+        // get city name by lat and long in arabic language 15.612887526239208, 32.53202878716481
+        const task2 = await JSON.stringify(response.results[0].address_components[1].short_name);
+        dataCity = task2;
+        console.log(task2);
+        return apiCall(configNear);
     })
     
-.then( async function (response) {
-    // get NearBy Place  for same lat long in arabic language
-    const task3 = await JSON.stringify(response.results[0].name);
-    console.log(task3);
-    dataNear = task3;
-    console.log(dataCity,dataNear);
-    res.send(`${dataCity}, ${dataNear}`)
+    .then( async function (response) {
+        // get NearBy Place  for same lat long in arabic language
     
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+        for (let i = 0; i <= 2; ++i) {
+        
+            const task4 = await JSON.stringify(response.results[i].name);
+            console.log(task4);
+       
+            dataNear = task4;
+        }
+
+   
+    
+        console.log(dataCity,dataNear);
+        res.send(`${dataCity}, ${dataNear}`)
+    
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
         
       
-  })
+})
 
 app.listen((process.env.PORT|| 5000), ()=>{
     console.log('Backend server running on port 5000')
