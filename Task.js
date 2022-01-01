@@ -78,8 +78,8 @@ var configCity = {
     
         console.log(dataNear);
         console.log(dataReigon);
-      // هنا لو عايز اللرسبونس على شكل جييسون json
-//         res.status(200).json(`${dataReigon},${dataNear}`);
+      // if you want the response as JSON
+//         res.json(`${dataReigon},${dataNear}`);
        res.send(`${dataReigon},${dataNear}`);
         
     
